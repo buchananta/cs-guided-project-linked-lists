@@ -18,7 +18,19 @@ class LinkedListNode():
         self.value = value
         self.next  = None
 
-def reverse(head_of_list):
+def reverse(head):
+    current = head
+    previous = None
+    while current:
+        # tried to use 'next' apparantly it's a keyword!
+        next_node = current.next
+        current.next = previous
+        previous = current
+        current = next_node
+    return previous #Return the last/first node
+
+
+def reverse_instructor(head_of_list):
     current_node = head_of_list
     previous_node = None
     next_node = None
@@ -37,3 +49,18 @@ def reverse(head_of_list):
         current_node = next_node
 
     return previous_node
+
+head = LinkedListNode('A')
+current = head
+for i in range(25):
+    current.next = LinkedListNode(chr(66 + i))
+    current = current.next
+
+def print_ll(current):
+    while current is not None:
+        print(current.value)
+        current = current.next
+
+print_ll(head)
+print("And now reverse!")
+print_ll(reverse(head))

@@ -27,10 +27,35 @@ class LinkedListNode():
     def __init__(self, value):
         self.value = value
         self.next  = None
-
-def delete_node(node_to_delete):
+# This should be impossible??
+# How do you walk backwards in a single linked list?
+# If all you're given, is the node to delete..
+# How you walk backwards?
+#def delete_node(node_to_delete):
     # Your code here
+# And so he changes the code....    
 
+
+def delete_node(head, index):
+    current = head
+    while current and index > 2:
+        #2 because linked lists 'start' at 1, and we stop at the node before
+        index -= 1
+        current = current.next
+    current.next = current.next.next
+
+def delete_node_instructor(head, index):
+    current = head
+    counter = 1
+    while cunter != index - 1:
+        current = current.next
+        counter += 1
+    current.next = current.next.next     
+
+def print_ll(current):
+    while current is not None:
+        print(current.value)
+        current = current.next
 
 x = LinkedListNode('X')
 y = LinkedListNode('Y')
@@ -39,4 +64,5 @@ z = LinkedListNode('Z')
 x.next = y
 y.next = z
 
-delete_node(y)
+delete_node(x, 2)
+print_ll(x)
